@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Br.Com.ControleHoras.WebApi.DTO;
+using Br.Com.ControleHoras.WebApi.Model;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Br.Com.ControleHoras.WebApi.Controllers
 {
@@ -9,9 +11,11 @@ namespace Br.Com.ControleHoras.WebApi.Controllers
         private readonly ILogger<PontoController> _logger = logger;
 
         [HttpPost(Name = "CadastrarNovoPeriodo")]
-        public IActionResult CadastrarPeriodo([FromBody] ushort ano, ushort mes)
+        public IActionResult CadastrarPeriodo([FromBody] PeriodoDTO dto)
         {
-            return Ok();
+            Periodo periodo = new(dto.Inicio, dto.Fim);
+            
+            return Ok(periodo);
         }
     }
 }
